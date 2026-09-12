@@ -10,72 +10,68 @@ This policy describes the Android release of **Clutch Cricket**, also listed as 
 
 ## The short version
 
-You can play without entering a name, email address or other profile information. The game creates a random Unity player identifier so it can back up a limited career summary, validate purchases and check public ranking availability. Detailed gameplay records stay on your device. **Unity Analytics is off unless you enable it in Settings, and Unity LevelPlay rewarded advertising is off unless you separately allow it.** The game has optional Google Play purchases and optional rewarded videos; it has no forced advertisements, online multiplayer, chat or precise-location access.
+You can play without entering a name, email address or other public profile information. The game creates a random Unity player identifier to back up a limited career summary and check ranking availability. A player must deliberately secure that guest profile with Unity Player Accounts before making a purchase, so paid items can be recovered on another device. **Unity Analytics is off unless you enable it in Settings. Rewarded advertising is paused in this release and its SDK is not initialized.** The game has optional Google Play purchases; it has no active advertisements, online multiplayer, chat or precise-location access.
 
 ## Information stored on your device
 
-The game uses local storage to keep:
+The game stores career progress, scores, story and challenge progress, Try Ball and Gem balances, unlocks, squad choices, country or region flag preference, interrupted-match checkpoints, sound and vibration choices, Analytics choice, the selected age band, and bounded diagnostic event logs. A flag is cosmetic, not a determination of nationality or location. Local diagnostic logs rotate by size and are not uploaded to us.
 
-- Career progress, scores, match results, story/challenge progress, Try Ball and Gem balances, unlocks, squad choices and country or region flag preferences.
-- Try Ball and rewarded-ad daily-limit records, Gem spending, premium-story ownership and a bounded list of delivered transaction identifiers used to prevent duplicate rewards.
-- An interrupted match's saved state, where a checkpoint is available, so you can resume playing.
-- Sound, vibration and analytics choices.
-- Bounded local gameplay event logs used for diagnostics. These detailed logs are not uploaded to us.
+The game does not request your name, phone number, contacts, precise location, photos, microphone recordings or advertising identifier to play.
 
-A flag is a cosmetic choice, not a determination of physical location or nationality. The game does not request your name, email, phone number, contacts, precise location, photos, microphone recordings or advertising identifier to play.
+## Online progress, accounts and rankings
 
-## Online progress and rankings
+Unity Authentication creates a random player identifier. Unity Cloud Save receives a limited career summary containing aggregate match results, highest scores, story completion, experience and cosmetic unlock identifiers. Try Balls, raw purchase receipts, daily-grant records and unfinished hidden hand selections are excluded from that ordinary career summary.
 
-Unity Authentication creates a random player identifier without asking for personal profile information. Unity Cloud Save receives a limited career-recovery summary containing aggregate match results, highest scores, story completion, experience and cosmetic unlock identifiers. Try Balls, local Gem spending, purchase receipts, transaction identifiers, daily-grant records and unfinished hidden hand selections are excluded from that cloud summary.
+The optional **Secure Account** action opens Unity Player Accounts sign-in and links the current guest profile, allowing the same Unity Authentication player and its cloud entitlements to be restored on another supported device. Unity operates that sign-in page and the account credentials; the game does not receive the player's Unity Account password.
 
-Our Unity Cloud Code purchase module receives the random Unity player identifier, product identifier and Google Play purchase token needed to validate an order with the Google Play Developer API. Before checkout, the game sends Google Play a one-way hash of the random Unity player identifier; the module requires Google to return the same hash so a purchase token cannot be replayed for another player. A protected Unity Cloud Save ledger stores cumulative purchased Gems, Story Pass and Founder Pack ownership, and a bounded list of hashed transaction identifiers. The game grants paid items only after the module verifies the purchase state and records the ledger entry. This helps prevent fraud, duplicate delivery and loss of verified purchases on a later launch of the same Unity player account.
+The game can read public ranking availability through Unity Leaderboards. It does not submit scores in this release. Matches still work and save locally when online services are unavailable. Guest progress is not recoverable after reinstall unless it was secured first.
 
-The game reads public ranking availability through Unity Leaderboards. It does not submit player scores in this release. Matches still work and save locally when online services are unavailable. Anonymous progress cannot currently be recovered after reinstall or on another device because no platform-account linking flow is included.
-
-Unity processes the random player identifier and cloud summary as the service provider operating Authentication, Cloud Save and Leaderboards. Network traffic to these services is encrypted in transit. See [Unity's game player privacy information](https://unity.com/legal/game-player-and-app-user-privacy-policy).
+Unity processes online-service data under its [game player privacy information](https://unity.com/legal/game-player-and-app-user-privacy-policy). Network traffic to these services is encrypted in transit.
 
 ## Optional analytics
 
-If you opt in under Settings, Unity Analytics receives only three developer-defined event names: match mode selected, match started and match completed. Those events contain no developer-defined parameters. We use their counts to understand the path from mode choice to match completion. We do not put names, email addresses, scores, country/flag choice, free-form text or local match identifiers in these events.
+If you opt in under Settings, Unity Analytics receives only three developer-defined event names: match mode selected, match started and match completed. Those events contain no developer-defined parameters. We do not put names, email addresses, scores, country or flag choice, free-form text or local match identifiers in them.
 
-Unity Analytics also processes service data such as IP address, approximate location inferred from IP, an installation-specific identifier, session information, platform/device information and app lifecycle events. Analytics is not required to play and remains off until you enable it. You can turn it off at any time. Unity states that Analytics data is encrypted in transit. We do not sell analytics information or share it with advertisers.
+Unity Analytics may also process service data such as IP address, approximate location inferred from IP, an installation-specific identifier, session information, platform or device information and app lifecycle events. Analytics is not required to play. You can turn it off at any time; the game then denies Analytics consent and requests deletion of Analytics data associated with that installation.
 
-## Optional rewarded advertising
+## Purchases and protected economy ledger
 
-Rewarded videos are disabled until you choose **Allow Rewarded Ads** in the game. Before that choice, the LevelPlay advertising service is not initialized. If you allow it, Unity LevelPlay and participating ad partners may process the Android advertising identifier, IP address and approximate location derived from it, device and app information, ad-view and reward interactions, and diagnostic or fraud-prevention signals. This processing is used to request and show a video you choose, measure delivery and rewards, limit abuse, and operate the advertising service.
+Optional purchases are processed by Google Play Billing. Offers include 100 or 300 Gems, a permanent Story Pass, and a Founder Pack. Google processes payment credentials; the game does not receive or store payment-card numbers.
 
-The game offers at most three rewarded benefits per UTC day across all rewarded offers. A video can grant one Try Ball after a Story defeat or double the XP from a completed match. There are no forced interstitial ads, and free Quick Match play does not require advertising. You can decline and continue playing, and you can turn rewarded advertising off in Settings. Android also lets you reset or delete its advertising identifier under system privacy settings. See [Unity's game player privacy information](https://unity.com/legal/game-player-and-app-user-privacy-policy) and the [Google Play Advertising ID controls](https://support.google.com/googleplay/android-developer/answer/6048248).
+Our Unity Cloud Code purchase module receives the Unity player identifier, product identifier and Google Play purchase token needed to validate an order with the Google Play Developer API. Google Play receives a one-way hash of the player identifier during checkout, and the module requires the matching hash before granting an item. A protected Unity Cloud Save ledger stores cumulative purchased and spent Gems, Story Pass and Founder Pack ownership, premium story and sign unlock identifiers, and a bounded list of hashed transaction identifiers. Paid delivery and premium Gem spending are accepted only after the server verifies and records the operation using conflict-safe write locks. Verified purchases are acknowledged or consumed through Google Play's server API. This prevents duplicate delivery, replay and overspending.
 
-## Purchases
+Purchases require Secure Account sign-in. Gems can unlock eligible story moments and signs. Try Balls are not sold and are used only for Story retries. In-game items are not cash and cannot be transferred outside the game.
 
-Optional purchases are processed by Google Play Billing. Offers include 100 or 300 Gems, a permanent Story Pass, and a Founder Pack. Google processes payment credentials and the purchase under its own terms; the game does not receive or store a payment-card number. Google Play, Unity Cloud Code and protected Unity Cloud Save process the product, purchase token, purchase status, hashed transaction identifier and the one-way hash of the random Unity player identifier so a purchase can be verified, delivered, restored where supported, and protected against fraud. Consumable Gems are spent locally on eligible story moments and cosmetics. Try Balls are not sold and are used only for Story retries.
+## Rewarded advertising
+
+Rewarded-video code and the Unity LevelPlay package are included, but advertising is fail-closed in this release: ad service keys are blank, signed server-to-server reward verification is not enabled, the SDK is not initialized, and the Android advertising-ID permission is removed during manifest merging. The age-band screen also prevents ad initialization for players under 18. No ad can currently be requested or shown.
+
+If rewarded videos are enabled in a future update, this policy and the Play Data Safety answers will be updated first, signed server-side reward verification will be required, and adult players will retain an explicit opt-in. Free Quick Match play will not require advertising.
 
 ## Permissions
 
-The game uses Android's vibration permission for optional haptic feedback and network access for online progress, purchase validation, rewarded advertising and optional Analytics. It declares Android advertising-ID access for the rewarded-ad service, which remains disabled until you allow rewarded ads. It does not request camera, microphone, contacts or device-location permissions. Sound effects, music and number calls play from bundled assets; the game does not record your voice.
+The game uses Android vibration for optional haptic feedback and network access for online progress, secure sign-in, purchase validation and optional Analytics. This release removes Android advertising-ID access. It does not request camera, microphone, contacts or device-location permissions. Audio plays from bundled assets; the game does not record your voice.
 
 ## Retention, controls and deletion
 
-Local records remain until overwritten, cleared in Android settings or removed with the app, subject to your device's backup settings. Local diagnostic logs rotate by size: the current log and one previous log are each limited to 512 KiB.
+Local records remain until overwritten, cleared in Android settings or removed with the app, subject to device backup settings. Local diagnostic logs keep a current file and one previous file, each limited to 512 KiB.
 
-To request deletion of the random Unity account and its cloud career summary, open **Settings → Data & Help → Delete Online Data** and confirm the second prompt. Keep the game open and connected until completion appears. Successful deletion also disables future online syncing on that installation. Your local save remains on the device. Some purchase and fraud-prevention records may need to be retained for transaction, refund, security or legal obligations. Because this release does not submit leaderboard scores, there is no player leaderboard entry to delete.
+To request deletion of the game profile, cloud career summary and protected purchase ledger, open **Settings → Data & Help → Delete Online Data** and confirm the second prompt. Keep the game open and connected until completion appears. Successful deletion disables future online syncing on that installation. Your local save remains, but paid entitlements tied to the deleted profile can become unrecoverable. A linked Unity Player Account is separate and operated by Unity; use **Manage Account** in the game to open Unity's account portal for its controls. Some transaction and fraud-prevention records may need to be retained for refunds, security or legal obligations.
 
-To remove local data, use Android Settings → Apps → Clutch Cricket → Storage → Clear storage (wording varies by device). Turning Analytics off stops Analytics collection and sends Unity Analytics a deletion request for data associated with that installation. Keep the game installed and connected long enough for that request to complete.
-
-## Google Play, device services and this website
-
-Google Play, Android, your device manufacturer or backup provider may independently process installation, device, diagnostic and backup information under their own settings and policies. Eligible crash, unresponsive-app and performance reports may be available to us through Android vitals. The game contains no enabled remote crash-reporting SDK.
-
-This policy is hosted on GitHub Pages without added analytics scripts, advertisements, tracking pixels or forms. GitHub processes website requests under the [GitHub Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement). Visiting this page does not upload game progress or local gameplay logs.
-
-## Privacy inquiries
-
-You can [submit a privacy inquiry to the publisher](https://github.com/asim1342/clutch-cricket-public/issues/new?title=Privacy%20inquiry). This creates a **public GitHub issue**, requires a GitHub account and displays the username and message you choose to submit. Do not post personal information, private logs, passwords or confidential details. We use information you deliberately submit only to answer the request or investigate the issue, not for marketing.
+To remove local data, use Android Settings → Apps → Clutch Cricket → Storage → Clear storage. Turning Analytics off sends Unity Analytics a deletion request for data associated with that installation; keep the game installed and connected long enough for it to complete.
 
 ## Children and families
 
-The Play release is intended for players aged 13 and older and is not directed to children under 13. The game does not ask players to provide profile information or use chat. Parents and guardians can use Google Play purchase controls and the deletion controls above. If you believe a child submitted personal information through the public support channel, request removal without reposting that information.
+The Play release is intended for players aged 13 and older and is not directed to children under 13. On first launch, the game asks only for one of three age bands (13–15, 16–17, or 18+) to apply privacy and advertising safeguards; it does not ask for a birth date. Advertising is unavailable to players under 18 and paused for everyone in this release. The game has no public profiles or chat. Parents and guardians can use Google Play purchase controls and the deletion controls above.
 
-## Changes
+## Google Play, device services and this website
 
-We will update this page and its effective date when the game's data practices change. Score submission, account linking, multiplayer or materially different advertising practices will require updated disclosures before they are enabled.
+Google Play, Android, device manufacturers or backup providers may independently process installation, payment, device, diagnostic and backup information under their own settings and policies. Eligible crash, unresponsive-app and performance reports may be available through Android vitals. The game contains no enabled remote crash-reporting SDK.
+
+This page is hosted on GitHub Pages without added analytics, advertising, tracking pixels or forms. GitHub processes website requests under the [GitHub Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
+
+## Contact and changes
+
+Email privacy inquiries to **fawkesthepheonix240@gmail.com**. You may also [open a public GitHub inquiry](https://github.com/asim1342/clutch-cricket-public/issues/new?title=Privacy%20inquiry); do not post personal information, private logs, passwords or confidential details in a public issue.
+
+We will update this page and its effective date when the game's data practices change. Score submission, multiplayer or active advertising will require updated disclosures before they are enabled.
