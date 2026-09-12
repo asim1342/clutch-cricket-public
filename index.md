@@ -34,6 +34,8 @@ If you opt in under Settings, Unity Analytics receives only three developer-defi
 
 Unity Analytics may also process service data such as IP address, approximate location inferred from IP, an installation-specific identifier, session information, platform or device information and app lifecycle events. Analytics is not required to play. You can turn it off at any time; the game then denies Analytics consent and requests deletion of Analytics data associated with that installation.
 
+Unity's current Google Play disclosures for its Analytics and In-App Purchasing components also identify crash logs, diagnostics and other app-performance data as SDK data types. Those components may collect that technical data, and Unity Analytics may share diagnostic and performance data with its service providers, for app functionality and analytics. Clutch Cricket does not attach names, scores, country choices or free-form gameplay content to those technical reports.
+
 ## Purchases and protected economy ledger
 
 Optional purchases are processed by Google Play Billing. Offers include 100 or 300 Gems, a permanent Story Pass, and a Founder Pack. Google processes payment credentials; the game does not receive or store payment-card numbers.
@@ -66,7 +68,7 @@ The Play release is intended for players aged 13 and older and is not directed t
 
 ## Google Play, device services and this website
 
-Google Play, Android, device manufacturers or backup providers may independently process installation, payment, device, diagnostic and backup information under their own settings and policies. Eligible crash, unresponsive-app and performance reports may be available through Android vitals. The game contains no enabled remote crash-reporting SDK.
+Google Play, Android, device manufacturers or backup providers may independently process installation, payment, device, diagnostic and backup information under their own settings and policies. Eligible crash, unresponsive-app and performance reports may be available through Android vitals. The game contains no separately enabled remote crash-reporting service; the Unity SDK data described above is still disclosed in Google Play's Data safety section.
 
 This page is hosted on GitHub Pages without added analytics, advertising, tracking pixels or forms. GitHub processes website requests under the [GitHub Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
 
