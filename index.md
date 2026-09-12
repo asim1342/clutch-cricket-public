@@ -6,69 +6,66 @@ title: Clutch Cricket Privacy Policy
 
 Effective date: September 11, 2026
 
-This policy describes the offline Android release of **Clutch Cricket**, also listed as **Clutch Cricket: Hand Cricket**, published by **fawkesthephoenix**. Its Android package is `com.gullyxi.handcricket`. “We” means the game's publisher.
+This policy describes the Android release of **Clutch Cricket**, also listed as **Clutch Cricket: Hand Cricket**, published by **fawkesthephoenix**. Its Android package is `com.gullyxi.handcricket`. “We” means the game's publisher.
 
 ## The short version
 
-You can play without creating an account. Your career, preferences and detailed gameplay records are stored on your device. **Unity Analytics is off unless you choose to enable it in Settings.** If enabled, a limited gameplay funnel and the service data described below are sent to Unity. The game does not include advertising, in-app purchases, online multiplayer or cloud saves. Audio is included in the game; it does not record your voice.
+You can play without entering a name, email address or other profile information. The game creates a random Unity player identifier so it can back up a limited career summary and check public ranking availability. Detailed gameplay records and paid-economy data stay on your device. **Unity Analytics is off unless you choose to enable it in Settings.** The release does not include advertising, active in-app purchases, online multiplayer, chat or precise-location access.
 
-Google Play, your device's backup services and this policy's web host operate separately, as explained below.
-
-## Information stored by the game
+## Information stored on your device
 
 The game uses local storage to keep:
 
-- Career progress, scores, match results, challenge and cup progress, unlocks, squad choices and country or region flag preferences.
+- Career progress, scores, match results, story/challenge progress, Try Ball and Gem balances, unlocks, squad choices and country or region flag preferences.
+- Premium-story ownership and purchase-replay records reserved for a future commerce release. Purchases are disabled in this release.
 - An interrupted match's saved state, where a checkpoint is available, so you can resume playing.
-- Sound and vibration preferences.
-- Local gameplay event logs, including event times, match identifiers, choices, outcomes and progression events. These support local diagnostics and are not uploaded to us.
+- Sound, vibration and analytics choices.
+- Bounded local gameplay event logs used for diagnostics. These detailed logs are not uploaded to us.
 
-A flag is a choice you make in the game, not a determination of your physical location or nationality. The game does not request your name, email, phone number, contacts, precise location, photos, microphone recordings or advertising identifier to play.
+A flag is a cosmetic choice, not a determination of physical location or nationality. The game does not request your name, email, phone number, contacts, precise location, photos, microphone recordings or advertising identifier to play.
 
-## How this information is used and protected
+## Online progress and rankings
 
-Local records make game features work, restore settings, preserve progress and help diagnose gameplay behavior. They are stored in the app's storage area under Android's access controls. They are not separately encrypted by the game, and a compromised device or access to device backups may expose them. No storage method provides an absolute security guarantee.
+Unity Authentication creates a random player identifier without asking for personal profile information. Unity Cloud Save receives a limited career-recovery summary containing aggregate match results, highest scores, story completion, experience and cosmetic unlock identifiers. Try Balls, Gems, premium-story ownership, purchase receipts, transaction identifiers, daily-grant records and unfinished hidden hand selections are excluded from that cloud summary.
 
-The detailed local gameplay log is not uploaded. If you opt in, Unity Analytics receives only three developer-defined event names: match mode selected, match started and match completed. These events contain no developer-defined parameters. We use their counts to understand the path from mode choice to match completion. We do not put names, email addresses, scores, country/flag choice, free-form text or local match identifiers in these events.
+The game reads public ranking availability through Unity Leaderboards. It does not submit player scores in this release. Matches still work and save locally when online services are unavailable. Anonymous progress cannot currently be recovered after reinstall or on another device because no platform-account linking flow is included.
 
-Unity Analytics also collects service data including IP address, approximate location derived from IP, an installation-specific identifier, user/session identifiers, platform and device information, and app/session lifecycle events. We do not set an account-based user ID. Unity processes this data for us as an analytics service provider. Unity states that analytics data is encrypted in transit and retained by default for 13 months. See [Unity's game player privacy information](https://unity.com/legal/game-player-and-app-user-privacy-policy).
+Unity processes the random player identifier and cloud summary as the service provider operating Authentication, Cloud Save and Leaderboards. Network traffic to these services is encrypted in transit. See [Unity's game player privacy information](https://unity.com/legal/game-player-and-app-user-privacy-policy).
 
-We do not sell analytics information or share it with advertisers. Unity cloud diagnostics, advertising and account services remain disabled.
+## Optional analytics
 
-## Permissions and audio
+If you opt in under Settings, Unity Analytics receives only three developer-defined event names: match mode selected, match started and match completed. Those events contain no developer-defined parameters. We use their counts to understand the path from mode choice to match completion. We do not put names, email addresses, scores, country/flag choice, free-form text or local match identifiers in these events.
 
-The game uses Android's vibration permission for optional haptic feedback and network access to send analytics only after opt-in. You can turn haptics and analytics off independently in Settings. It does not request camera, microphone, contacts or device-location permissions. Unity Analytics can infer an approximate location from the network IP address; it does not receive precise GPS location from the game. Sound effects, music and number calls play from bundled assets. The Android text-to-speech fallback is disabled in this release.
+Unity Analytics also processes service data such as IP address, approximate location inferred from IP, an installation-specific identifier, session information, platform/device information and app lifecycle events. Analytics is not required to play and remains off until you enable it. You can turn it off at any time. Unity states that Analytics data is encrypted in transit. We do not sell analytics information or share it with advertisers.
 
-## Google Play and device services
+## Permissions, advertising and purchases
 
-Google Play and Android may independently process installation, device and diagnostic information under their settings and policies. For example, eligible crash, unresponsive-app and performance reports may be made available to us through Android vitals. We use available reports to identify and fix reliability problems. This is separate from Unity Analytics and the game's local event logs; the game contains no enabled remote crash-reporting SDK.
+The game uses Android's vibration permission for optional haptic feedback and network access for online progress, ranking availability and optional Analytics. It does not request camera, microphone, contacts or device-location permissions. Sound effects, music and number calls play from bundled assets; the game does not record your voice.
 
-Your operating system, device manufacturer or backup provider may back up or restore app data depending on your device and account settings. The game does not operate its own cloud backup or account-recovery service. Manage these backups through your device or backup provider.
+Future rewarded-ad and Gem-pack offers are visibly disabled in this release. No advertising SDK, advertising identifier access, active billing system or real-money purchase flow is included. This policy and the Google Play disclosures will be updated before advertising or purchases are enabled.
 
-See [Google's Privacy Policy](https://policies.google.com/privacy) and [Android vitals information](https://developer.android.com/topic/performance/vitals), along with your device provider's privacy information.
+## Retention, controls and deletion
 
-## Retention and deletion
+Local records remain until overwritten, cleared in Android settings or removed with the app, subject to your device's backup settings. Local diagnostic logs rotate by size: the current log and one previous log are each limited to 512 KiB.
 
-Career records and settings remain locally until overwritten or removed. Match checkpoints change as you play. Local event logs rotate when they reach their size limit: the current log and one previous log are each limited to 512 KiB; older records are removed during rotation rather than kept for a fixed number of days. Unity states that personal data in Unity Analytics is retained for 13 months by default.
+To delete the random Unity account and its cloud career summary, open **Settings → Data & Help → Delete Online Data** and confirm the second prompt. Keep the game open and connected until completion appears. Successful deletion also disables future online syncing on that installation. Your local save remains on the device. Because this release never submits leaderboard scores, there is no player leaderboard entry to delete.
 
-To remove local game data, use Android Settings > Apps > Clutch Cricket > Storage > Clear storage (the wording varies by device). This erases progress and settings and cannot be undone through the game. Uninstalling normally removes app data, but device backups or transfers may retain or restore copies. Manage or delete those separately with your backup provider.
+To remove local data, use Android Settings → Apps → Clutch Cricket → Storage → Clear storage (wording varies by device). Turning Analytics off stops Analytics collection and sends Unity Analytics a deletion request for data associated with that installation. Keep the game installed and connected long enough for that request to complete.
 
-Turning Analytics off in the game's Settings stops collection and sends Unity Analytics a request to delete the analytics data associated with that installation. Keep the game installed and allow network access long enough for the request to complete. Clearing storage or uninstalling first may prevent the pending request from being sent. There is no game account to delete, and we cannot remotely retrieve or erase records that exist only on your device. Google and GitHub control retention of information they collect through their own services.
+## Google Play, device services and this website
 
-## Privacy inquiries and information you choose to send
+Google Play, Android, your device manufacturer or backup provider may independently process installation, device, diagnostic and backup information under their own settings and policies. Eligible crash, unresponsive-app and performance reports may be available to us through Android vitals. The game contains no enabled remote crash-reporting SDK.
 
-You can [submit a privacy inquiry to the publisher](https://github.com/asim1342/clutch-cricket-public/issues/new?title=Privacy%20inquiry). This is a **public GitHub issue**, requires a GitHub account and displays your GitHub username and message. Do not post personal information, private logs, passwords or confidential details. You do not need a GitHub account to read this policy or play the game.
+This policy is hosted on GitHub Pages without added analytics scripts, advertisements, tracking pixels or forms. GitHub processes website requests under the [GitHub Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement). Visiting this page does not upload game progress or local gameplay logs.
 
-If you use this channel, we can see the information you deliberately submit and use it to answer your request or resolve a reported issue, not for marketing. Public inquiries remain visible until removed; closing an issue does not delete it. You can edit or delete your own comments where GitHub permits, or request removal of an issue we control. GitHub may retain service records under its policy. We cannot remove copies made by other people. Depending on applicable law, you may have rights to access, correct or request deletion of personal information we hold; contact us through this mechanism without including sensitive information in public.
+## Privacy inquiries
 
-## This privacy-policy website
-
-This page is hosted on GitHub Pages. We have not added analytics scripts, advertising, tracking pixels or forms to it. GitHub logs visitors' IP addresses for security purposes and processes website requests under the [GitHub Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement). Opening links to other services subjects those visits to their respective policies. Visiting this page does not upload your game's saved progress or local event logs.
+You can [submit a privacy inquiry to the publisher](https://github.com/asim1342/clutch-cricket-public/issues/new?title=Privacy%20inquiry). This creates a **public GitHub issue**, requires a GitHub account and displays the username and message you choose to submit. Do not post personal information, private logs, passwords or confidential details. We use information you deliberately submit only to answer the request or investigate the issue, not for marketing.
 
 ## Children and families
 
-The offline game does not ask children or other players to provide personal information, create accounts, use chat or watch targeted advertisements. If you believe personal information about a child has been submitted to us, a parent or guardian can request removal through the contact mechanism above without posting the child's information publicly. Device, store and external website services have their own policies and parental controls.
+The game does not ask players to provide profile information, use chat, view targeted advertising or make purchases in this release. Parents and guardians can use the deletion controls above. If you believe a child submitted personal information through the public support channel, request removal without reposting that information.
 
 ## Changes
 
-We will update this page and its effective date if the game's data practices change. Any future addition of online services or advertising will require updated disclosures and any consent required by applicable law. This policy describes the current release, not experimental or older development builds.
+We will update this page and its effective date when the game's data practices change. Ads, purchases, score submission, account linking or multiplayer will require updated disclosures before they are enabled.
